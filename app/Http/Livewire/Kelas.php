@@ -30,7 +30,7 @@ class Kelas extends Component
     public function store()
     {
         $kode_jurusan = Jurusan::where('id', $this->jurusan_id)->first()->kode_jurusan;
-        $nama_kelas = $this->kelas . ' ' . $kode_jurusan . ' ' . $this->rombel;
+        $nama_kelas = $this->kelas . ' ' . $this->rombel;
         $kelas = ModelsKelas::updateOrCreate(['id' => $this->kelas_id], [
             'kelas'      => $this->kelas,
             'jurusan_id'   => $this->jurusan_id,

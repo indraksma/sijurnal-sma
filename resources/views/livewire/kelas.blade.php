@@ -16,7 +16,7 @@
                                 <thead>
                                     <tr>
                                         <th>Kelas</th>
-                                        <th>Jurusan</th>
+                                        <th>Paket</th>
                                         <th>Rombel</th>
                                         <th>Action</th>
                                     </tr>
@@ -68,9 +68,9 @@
                                     class="form-control" id="kelas" placeholder="Tahun Angkatan Kelas" required>
                             </div>
                             <div class="mb-3">
-                                <label for="jurusan" class="form-label">Kode Jurusan</label>
+                                <label for="jurusan" class="form-label">Kode Paket</label>
                                 <select wire:model="jurusan_id" type="text" name="jurusan" class="form-select"
-                                    id="jurusan" placeholder="Pilih Jurusan" required>
+                                    id="jurusan" placeholder="Pilih Paket" required>
                                     <option value="">-- Pilih Jurusan --</option>
                                     @if ($jurusan_list->isNotEmpty())
                                         @foreach ($jurusan_list as $jrs)
