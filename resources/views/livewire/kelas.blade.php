@@ -71,7 +71,7 @@
                                 <label for="jurusan" class="form-label">Kode Paket</label>
                                 <select wire:model="jurusan_id" type="text" name="jurusan" class="form-select"
                                     id="jurusan" placeholder="Pilih Paket" required>
-                                    <option value="">-- Pilih Jurusan --</option>
+                                    <option value="">-- Pilih Paket --</option>
                                     @if ($jurusan_list->isNotEmpty())
                                         @foreach ($jurusan_list as $jrs)
                                             <option value="{{ $jrs->id }}">{{ $jrs->kode_jurusan }}</option>
