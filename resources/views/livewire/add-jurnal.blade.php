@@ -19,7 +19,7 @@
                     <div class="card-body rounded-bottom">
                         <form>
                             <div class="row">
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label for="kelas" class="form-label">Kelas</label>
                                     <select wire:model="kelas" type="text" name="kelas" class="form-select"
                                         id="kelas" placeholder="Pilih Kelas" required>
@@ -33,19 +33,7 @@
                                         @endif
                                     </select>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="jurusan" class="form-label">Kode Paket</label>
-                                    <select wire:model="jurusan_id" type="text" name="jurusan" class="form-select"
-                                        id="jurusan" placeholder="Pilih Paket" required>
-                                        <option value="">-- Pilih Paket --</option>
-                                        @if ($jurusan_list->isNotEmpty())
-                                            @foreach ($jurusan_list as $jrs)
-                                                <option value="{{ $jrs->id }}">{{ $jrs->kode_jurusan }}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label for="nama_kelas" class="form-label">Nama Kelas</label>
                                     <select wire:model="kelas_id" type="text" name="nama_kelas" class="form-select"
                                         id="nama_kelas" placeholder="Pilih Nama Kelas" required>

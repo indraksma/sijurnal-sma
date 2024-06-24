@@ -48,18 +48,7 @@ class AddJurnal extends Component
     public function updatedKelas()
     {
         $this->kelas_id = '';
-        if ($this->jurusan_id != NULL) {
-            $this->nama_kelas_list = Kelas::where('kelas', $this->kelas)->where('jurusan_id', $this->jurusan_id)->get();
-        }
-        $this->cekForm();
-    }
-
-    public function updatedJurusanId()
-    {
-        $this->kelas_id = '';
-        if ($this->kelas != NULL) {
-            $this->nama_kelas_list = Kelas::where('kelas', $this->kelas)->where('jurusan_id', $this->jurusan_id)->get();
-        }
+        $this->nama_kelas_list = Kelas::where('kelas', $this->kelas)->get();
         $this->cekForm();
     }
 
