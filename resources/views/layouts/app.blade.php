@@ -122,14 +122,14 @@
                                 <div class="nav-link-icon"><i data-feather="server"></i></div>
                                 Rombongan Belajar
                             </a>
-                            <a class="{{ request()->routeIs(['user', 'roles', 'kepsek', 'jurusan', 'kelas', 'semester', 'ta']) ? 'nav-link active' : 'nav-link collapsed' }}"
+                            <a class="{{ request()->routeIs(['user', 'roles', 'kepsek', 'jurusan', 'kelas', 'semester', 'ta', 'config']) ? 'nav-link active' : 'nav-link collapsed' }}"
                                 href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseSetting"
                                 aria-expanded="false" aria-controls="collapseSetting">
                                 <div class="nav-link-icon"><i data-feather="settings"></i></div>
                                 Settings
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="{{ request()->routeIs(['user', 'roles', 'kepsek', 'jurusan', 'kelas', 'semester', 'ta']) ? 'collapse show' : 'collapse' }}"
+                            <div class="{{ request()->routeIs(['user', 'roles', 'kepsek', 'jurusan', 'kelas', 'semester', 'ta', 'config']) ? 'collapse show' : 'collapse' }}"
                                 id="collapseSetting" data-bs-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                     <a class="{{ request()->routeIs('kepsek') ? 'nav-link active' : 'nav-link' }}"
