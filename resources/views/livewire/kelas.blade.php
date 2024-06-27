@@ -81,8 +81,10 @@
                             </div>
                             <div class="mb-3">
                                 <label for="rombel" class="form-label">Rombel</label>
-                                <input wire:model="rombel" type="text" pattern="\d*" name="rombel" maxlength="2"
+                                <input wire:model="rombel" type="text" name="rombel" maxlength="10"
                                     class="form-control" id="rombel" placeholder="Rombel Kelas" required>
+                                {{-- <input wire:model="rombel" type="text" pattern="\d*" name="rombel" maxlength="2"
+                                    class="form-control" id="rombel" placeholder="Rombel Kelas" required> --}}
                             </div>
                             <div class="row align-items-center justify-content-between">
                                 <div class="col-auto mb-3">
