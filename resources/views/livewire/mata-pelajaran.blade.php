@@ -52,9 +52,9 @@
                                 </tbody>
                             </table> --}}
                         </div>
-                        <div class="mt-2">
+                        {{-- <div class="mt-2">
                             {{ $mapel->links() }}
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
