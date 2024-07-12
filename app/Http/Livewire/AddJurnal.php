@@ -34,7 +34,6 @@ class AddJurnal extends Component
             $q->where('name', 'user')->orWhere('name', 'admin');
         })->get();
         $this->jurusan_list = Jurusan::all();
-        $this->mapel_list = MataPelajaran::all();
         $this->tanggal = date('Y-m-d');
         $this->semester_id = Semester::where('is_active', '1')->first()->id;
     }
@@ -54,7 +53,11 @@ class AddJurnal extends Component
 
     public function updatedKelasId($id)
     {
+        $this->mapel_id = '';
         $this->siswa_list = Siswa::where('kelas_id', $id)->get();
+        $kelas = Kelas::where('id', $id)->first();
+        $jurusan_id = $kelas->jurusan_id;
+        $this->mapel_list = MataPelajaran::where('jurusan_id', $jurusan_id)->orWhere('jurusan_id', 0)->get();
         $siswa = $this->siswa_list;
         if ($siswa->isNotEmpty()) {
             foreach ($siswa as $key => $data) {

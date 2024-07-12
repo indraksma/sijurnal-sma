@@ -37,7 +37,7 @@
                                     @foreach ($data_siswa as $data)
                                         <tr>
                                             <td>{{ $data->nama }}</td>
-                                            <td>{{ $data->kelas->kelas . ' ' . $data->kelas->jurusan->kode_jurusan . ' ' . $data->kelas->rombel }}
+                                            <td>{{ $data->kelas->nama_kelas }}
                                             </td>
                                             <td>{{ $data->nis }}</td>
                                             <td>{{ $data->jk }}</td>

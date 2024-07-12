@@ -97,10 +97,12 @@
                                         <label for="mapel" class="form-label">Mata Pelajaran</label>
                                         <select wire:model="mapel_id" class="form-select" id="mapel" required>
                                             <option value="">-- Select --</option>
-                                            @foreach ($mapel_list as $datam)
-                                                <option value="{{ $datam->id }}">
-                                                    {{ Str::upper($datam->nama_mapel) }}</option>
-                                            @endforeach
+                                            @if ($mapel_list)
+                                                @foreach ($mapel_list as $datam)
+                                                    <option value="{{ $datam->id }}">
+                                                        {{ Str::upper($datam->nama_mapel) }}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>

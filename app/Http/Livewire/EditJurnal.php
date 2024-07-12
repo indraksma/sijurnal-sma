@@ -34,7 +34,7 @@ class EditJurnal extends Component
         })->get();
         $this->jurusan_list = Jurusan::all();
         $this->jurusan_id = $jurnal->kelas->jurusan_id;
-        $this->mapel_list = MataPelajaran::all();
+        $this->mapel_list = MataPelajaran::where('jurusan_id', 0)->orWhere('jurusan_id', $jurnal->kelas->jurusan_id)->get();
         $this->mapel_id = $jurnal->mata_pelajaran_id;
         $this->kelas = $jurnal->kelas->kelas;
         $this->kelas_id = $jurnal->kelas_id;

@@ -14,7 +14,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 class Laporan extends Component
 {
     use LivewireAlert;
-    public $tanggal, $jk_type, $modal, $jurusan_id, $jurusan_list, $kelas, $kelas_id, $kelas_list, $nama_kelas_list, $user_id, $guru_list, $nama_guru, $mapel_id, $semester_id, $mapel_list, $semester_list;
+    public $tanggal, $jk_type, $modal, $jurusan_list, $kelas, $kelas_id, $kelas_list, $nama_kelas_list, $user_id, $guru_list, $nama_guru, $mapel_id, $semester_id, $mapel_list, $semester_list;
     private $cekform = true;
     public $showPrintBtn = false;
     public $showTanggal = false;
@@ -33,8 +33,7 @@ class Laporan extends Component
             $this->guru_list = User::all();
         }
         $this->user_id = $user->id;
-        $this->jurusan_list = Jurusan::all();
-        $this->mapel_list = MataPelajaran::all();
+        // $this->jurusan_list = Jurusan::all();
         $this->semester_list = Semester::all();
         // $this->semester_id = Semester::where('is_active', '1')->first()->id;
     }
@@ -49,23 +48,15 @@ class Laporan extends Component
     public function updatedKelas($id)
     {
         $this->kelas_id = '';
-        if ($this->jurusan_id != NULL) {
-            $this->nama_kelas_list = Kelas::where('kelas', $id)->where('jurusan_id', $this->jurusan_id)->get();
-        }
+        $this->nama_kelas_list = Kelas::where('kelas', $id)->get();
         $this->cekForm();
     }
 
-    public function updatedJurusanId()
+    public function updatedKelasId($id)
     {
-        $this->kelas_id = '';
-        if ($this->kelas != NULL) {
-            $this->nama_kelas_list = Kelas::where('kelas', $this->kelas)->where('jurusan_id', $this->jurusan_id)->get();
-        }
-        $this->cekForm();
-    }
-
-    public function updatedKelasId()
-    {
+        $this->mapel_id = '';
+        $jrs_id = Kelas::where('id', $id)->first()->jurusan_id;
+        $this->mapel_list = MataPelajaran::where('jurusan_id', 0)->orWhere('jurusan_id', $jrs_id)->get();
         $this->cekForm();
     }
 
@@ -94,9 +85,6 @@ class Laporan extends Component
     public function cekForm()
     {
         if ($this->kelas == "") {
-            $this->cekform = false;
-        }
-        if ($this->jurusan_id == "") {
             $this->cekform = false;
         }
         if ($this->kelas_id == "") {
@@ -147,9 +135,9 @@ class Laporan extends Component
     public function resetInputFields($type)
     {
         if ($type == 1) {
-            $this->reset(['kelas', 'jurusan_id', 'kelas_id', 'semester_id', 'mapel_id', 'nama_kelas_list']);
+            $this->reset(['kelas', 'kelas_id', 'semester_id', 'mapel_id', 'nama_kelas_list']);
         } else {
-            $this->reset(['kelas', 'jurusan_id', 'kelas_id', 'semester_id', 'jk_type', 'nama_kelas_list']);
+            $this->reset(['kelas', 'kelas_id', 'semester_id', 'jk_type', 'nama_kelas_list']);
         }
     }
 }

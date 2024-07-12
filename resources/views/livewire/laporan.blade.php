@@ -87,15 +87,6 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="jurusan" class="form-label">Jurusan</label>
-                            <select wire:model="jurusan_id" class="form-select" id="jurusan" required>
-                                <option value="">-- Select --</option>
-                                @foreach ($jurusan_list as $jrs)
-                                    <option value="{{ $jrs->id }}">{{ Str::upper($jrs->kode_jurusan) }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
                             <label for="nama_kelas" class="form-label">Nama Kelas</label>
                             <select wire:model="kelas_id" name="kelas_id" class="form-select" id="nama_kelas" required>
                                 <option value="">-- Select --</option>
@@ -108,12 +99,14 @@
                         </div>
                         <div class="mb-3">
                             <label for="mapel" class="form-label">Mata Pelajaran</label>
-                            <select wire:model="mapel_id" name="mapel_id" class="form-select" id="mapel"
-                                required>
+                            <select wire:model="mapel_id" name="mapel_id" class="form-select" id="mapel" required>
                                 <option value="">-- Select --</option>
-                                @foreach ($mapel_list as $datam)
-                                    <option value="{{ $datam->id }}">{{ Str::upper($datam->nama_mapel) }}</option>
-                                @endforeach
+                                @if ($mapel_list)
+                                    @foreach ($mapel_list as $datam)
+                                        <option value="{{ $datam->id }}">{{ Str::upper($datam->nama_mapel) }}
+                                        </option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                         @if ($showTanggal != true)
@@ -173,15 +166,6 @@
                                 <option value="">-- Select --</option>
                                 @foreach ($kelas_list as $kls)
                                     <option value="{{ $kls->kelas }}">{{ Str::upper($kls->kelas) }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="jurusan" class="form-label">Jurusan</label>
-                            <select wire:model="jurusan_id" class="form-select" id="jurusan" required>
-                                <option value="">-- Select --</option>
-                                @foreach ($jurusan_list as $jrs)
-                                    <option value="{{ $jrs->id }}">{{ Str::upper($jrs->kode_jurusan) }}</option>
                                 @endforeach
                             </select>
                         </div>

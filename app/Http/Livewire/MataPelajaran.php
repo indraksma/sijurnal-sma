@@ -13,7 +13,7 @@ class MataPelajaran extends Component
     use LivewireAlert, WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $mapel_id, $jurusan_id, $jurusan_list, $nama_mapel, $delete_id;
-    protected $listeners = ['refresh' => '$refresh'];
+    protected $listeners = ['refresh' => '$refresh', 'edit' => 'edit', 'deleteId' => 'deleteId'];
 
     public function mount()
     {
@@ -41,7 +41,7 @@ class MataPelajaran extends Component
             'toast' => true,
         ]);
         $this->resetInputFields();
-        $this->emit('refresh');
+        $this->emit('refreshMapelTable');
     }
 
     public function edit($id)
@@ -72,6 +72,6 @@ class MataPelajaran extends Component
             'toast' => true,
         ]);
         $this->resetInputFields();
-        $this->emit('refresh');
+        $this->emit('refreshMapelTable');
     }
 }

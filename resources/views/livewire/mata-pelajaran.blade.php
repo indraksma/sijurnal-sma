@@ -12,7 +12,8 @@
                     </div>
                     <div class="card-body rounded-bottom">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped mb-0">
+                            <livewire:mapel-table />
+                            {{-- <table class="table table-bordered table-striped mb-0">
                                 <thead>
                                     <tr>
                                         <th>Nama Mapel</th>
@@ -49,7 +50,7 @@
                                         </tr>
                                     @endif
                                 </tbody>
-                            </table>
+                            </table> --}}
                         </div>
                         <div class="mt-2">
                             {{ $mapel->links() }}
