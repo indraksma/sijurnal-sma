@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
@@ -22,7 +23,7 @@ class UsersImport implements ToModel, WithStartRow
             'gelar_belakang' => $row[2],
             'nip' => $row[3],
             'email' => $row[4],
-            'password' => $row[5],
+            'password' => Hash::make($row[5]),
         ])->assignRole('user');
 
         return $user;
