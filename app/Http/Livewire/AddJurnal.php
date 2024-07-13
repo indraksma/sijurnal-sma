@@ -94,9 +94,9 @@ class AddJurnal extends Component
         if ($this->kelas == "") {
             $this->cekform = false;
         }
-        if ($this->jurusan_id == "") {
-            $this->cekform = false;
-        }
+        // if ($this->jurusan_id == "") {
+        //     $this->cekform = false;
+        // }
         if ($this->kelas_id == "") {
             $this->cekform = false;
         }
