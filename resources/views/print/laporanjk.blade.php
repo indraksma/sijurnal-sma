@@ -47,7 +47,7 @@
     $data64 = file_get_contents($path);
     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data64);
     ?>
-    <img src="{{ $base64 }}" width="100%" style="margin-bottom: 50px;" />
+    <img src="{{ $base64 }}" width="100%" style="margin-bottom: 20px;" />
     <h4 class="ctr" style="margin-bottom: 0; font-weight:normal;">DAFTAR HADIR DAN JURNAL
         KELAS<br><strong>{{ strtoupper($school_name) }}</strong><br>SEMESTER {{ strtoupper($semester->semester) }} TAHUN
         AJARAN <?= $tahunajaran ?></h4>
