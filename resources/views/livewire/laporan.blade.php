@@ -73,8 +73,9 @@
                                     @endforeach
                                 </select>
                             @else
-                                <input wire:model="nama_guru" name="user_id" type="text" class="form-control"
+                                <input wire:model="nama_guru" name="nama_guru" type="text" class="form-control"
                                     id="guru" readonly>
+                                <input type="hidden" name="user_id" type="text" wire:model="user_id" />
                             @endif
                         </div>
                         <div class="mb-3">
@@ -99,7 +100,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="mapel" class="form-label">Mata Pelajaran</label>
-                            <select wire:model="mapel_id" name="mapel_id" class="form-select" id="mapel" required>
+                            <select wire:model="mapel_id" name="mapel_id" class="form-select" id="mapel"
+                                required>
                                 <option value="">-- Select --</option>
                                 @if ($mapel_list)
                                     @foreach ($mapel_list as $datam)
