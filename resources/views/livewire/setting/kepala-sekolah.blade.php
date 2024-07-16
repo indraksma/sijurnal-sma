@@ -14,6 +14,7 @@
                                     <tr>
                                         <th>Nama</th>
                                         <th>NIP</th>
+                                        <th>TTD</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -23,6 +24,7 @@
                                             <tr>
                                                 <td>{{ $data->nama }}</td>
                                                 <td>{{ $data->nip }}</td>
+                                                <td>{{ $data->ttd }}</td>
                                                 <td>
                                                     <a href="#nama" wire:click="edit({{ $data->id }})"
                                                         class="btn btn-sm btn-warning me-1 mb-2">
@@ -53,7 +55,7 @@
                         <h5 class="card-title mb-0">Add / Edit Kepala Sekolah</h5>
                     </div>
                     <div class="card-body rounded-bottom">
-                        <form method="POST" wire:submit.prevent="store()">
+                        <form method="POST" enctype="multipart/form-data" wire:submit.prevent="store">
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama Lengkap</label>
                                 <input wire:model.lazy="nama" type="text" name="nama" class="form-control"
@@ -63,6 +65,18 @@
                                 <label for="nip" class="form-label">NIP</label>
                                 <input wire:model.lazy="nip" type="text" name="nip" class="form-control"
                                     id="nip" placeholder="NIP" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ttd{{ $iteration }}" class="form-label">Tanda Tangan <small>(Image Only.
+                                        Max 2MB)</small></label>
+                                <input wire:model="ttd" type="file" name="ttd{{ $iteration }}"
+                                    class="form-control" id="ttd{{ $iteration }}" accept=".jpg,.png,.jpeg" />
+                                @error('photo')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
+                                @if ($file_ttd)
+                                    <img src="{{ asset('storage/img/ttd/' . $file_ttd) }}" class="img-fluid mt-2" />
+                                @endif
                             </div>
                             <div class="row align-items-center justify-content-between">
                                 <div class="col-auto mb-3">

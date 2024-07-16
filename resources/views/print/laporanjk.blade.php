@@ -47,7 +47,7 @@
     $data64 = file_get_contents($path);
     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data64);
     ?>
-    <img src="{{ $base64 }}" width="100%" style="margin-bottom: 20px;" />
+    <img src="{{ $base64 }}" width="100%" style="margin-bottom: 10px;" />
     <h4 class="ctr" style="margin-bottom: 0; font-weight:normal;">DAFTAR HADIR DAN JURNAL
         KELAS<br><strong>{{ strtoupper($school_name) }}</strong><br>SEMESTER {{ strtoupper($semester->semester) }} TAHUN
         AJARAN <?= $tahunajaran ?></h4>
@@ -255,13 +255,17 @@
         <td>&nbsp;</td>
         <td width="50%" style="padding-left: 50px;">
             Banjarnegara, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}<br><br>
-            Mengetahui,<br>
-            Kepala Sekolah<br>
+            Mengetahui,<br />
+            Kepala Sekolah<br />
+            <?php
+            $path2 = public_path('/storage/img/ttd/' . $semester->kepala_sekolah->ttd);
+            $type2 = pathinfo($path2, PATHINFO_EXTENSION);
+            $data64_2 = file_get_contents($path2);
+            $base64_2 = 'data:image/' . $type2 . ';base64,' . base64_encode($data64_2);
+            ?>
+            <img src="{{ $base64_2 }}" width="50%" />
             <br />
-            <br />
-            <br />
-            <br />
-            {{ $semester->kepala_sekolah->nama }}<br>
+            {{ $semester->kepala_sekolah->nama }}<br />
             NIP. {{ $semester->kepala_sekolah->nip }}
         </td>
     </table>

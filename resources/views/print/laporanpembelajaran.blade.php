@@ -55,7 +55,7 @@
     $data64 = file_get_contents($path);
     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data64);
     ?>
-    <img src="{{ $base64 }}" width="100%" style="margin-bottom: 20px;" />
+    <img src="{{ $base64 }}" width="100%" style="margin-bottom: 10px;" />
     <h3 class="ctr">JURNAL KEGIATAN PEMBELAJARAN<br>{{ strtoupper($school_name) }}</h3>
     <table style="margin-bottom: 20px;">
         <tr>
@@ -152,28 +152,30 @@
     <table width="100%" class="ctr" style="margin-top: 20px;">
         <tr>
             <td width="50%" style="padding-right: 20%">
-                <br>
-                Mengetahui,<br>
-                Kepala Sekolah<br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                {{-- <img src="./assets/temp/qrlogo.png" width="90px"><br> --}}
-                {{ $jurnal[0]->semester->kepala_sekolah->nama }}<br>
+                <br />
+                Mengetahui,<br />
+                Kepala Sekolah<br />
+                <?php
+                $path2 = public_path('/storage/img/ttd/' . $semester->kepala_sekolah->ttd);
+                $type2 = pathinfo($path2, PATHINFO_EXTENSION);
+                $data64_2 = file_get_contents($path2);
+                $base64_2 = 'data:image/' . $type2 . ';base64,' . base64_encode($data64_2);
+                ?>
+                <img src="{{ $base64_2 }}" width="50%" />
+                <br />
+                {{ $jurnal[0]->semester->kepala_sekolah->nama }}<br />
                 NIP. {{ $jurnal[0]->semester->kepala_sekolah->nip }}
             </td>
             <td width="50%" style="padding-left: 20%">
-                Banjarnegara, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}<br>
-                <br>
+                Banjarnegara, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}<br />
+                <br />
                 Guru Mata Pelajaran
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
                 {{ $jurnal[0]->user->gelar_depan != null ? $jurnal[0]->user->gelar_depan . ' ' : '' }}<?= $jurnal[0]->user->name ?>{{ $jurnal[0]->user->gelar_belakang != null ? ', ' . $jurnal[0]->user->gelar_belakang : '' }}<br>
                 NIP. <?php if ($jurnal[0]->user->nip == null) {
                     echo '-';

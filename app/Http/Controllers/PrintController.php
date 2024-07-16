@@ -54,7 +54,7 @@ class PrintController extends Controller
                 $pdf = Pdf::loadView('print.laporanjk', compact('row', 'jurnal', 'siswa', 'semester', 'tahunajaran', 'presensi', 'kelas', 'tanggal', 'school_name', 'kop'));
                 $tgl = date('d-m-Y', strtotime($tanggal));
                 $filename = "Jurnal-Kelas-" . $tgl . "-" . $kelas->nama_kelas . ".pdf";
-                return $pdf->download($filename);
+                return $pdf->stream($filename);
                 // return view('print.laporanjk', compact('row', 'jurnal', 'siswa', 'semester', 'tahunajaran', 'presensi', 'kelas', 'tanggal'));
             } else {
                 return back()->with('message', 'Data Tidak Ditemukan');

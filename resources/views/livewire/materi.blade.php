@@ -39,6 +39,7 @@
                                         <th>Guru</th>
                                         <th>Mapel</th>
                                         <th>Topik</th>
+                                        <th>Materi</th>
                                         <th>Link Materi</th>
                                         <th>Action</th>
                                     </tr>
@@ -50,6 +51,7 @@
                                                 <td>{{ $data->user->name }}</td>
                                                 <td>{{ $data->mata_pelajaran->nama_mapel }}</td>
                                                 <td>{{ $data->materi }}</td>
+                                                <td>{{ $data->ki_kd }}</td>
                                                 <td>
                                                     @if ($data->link != null)
                                                         <a href="{{ $data->link }}" class="btn btn-primary btn-sm"
@@ -76,7 +78,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="5" class="text-center">Belum ada data</td>
+                                            <td colspan="6" class="text-center">Belum ada data</td>
                                         </tr>
                                     @endif
                                 </tbody>

@@ -55,7 +55,7 @@
     $data64 = file_get_contents($path);
     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data64);
     ?>
-    <img src="{{ $base64 }}" width="100%" style="margin-bottom: 20px;" />
+    <img src="{{ $base64 }}" width="100%" style="margin-bottom: 10px;" />
     <h3 class="ctr">AGENDA GURU<br>{{ strtoupper($school_name) }}</h3>
     <table style="margin-bottom: 20px;">
         <tr>
