@@ -95,7 +95,7 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="row">
                                         <div class="col-6">
-                                            <label for="materi" class="form-label">Materi</label>
+                                            <label for="materi" class="form-label">Topik Materi</label>
                                         </div>
                                         <div class="col-6 text-end">
                                             @if ($mapel_id != '' && $user_id != '')
@@ -107,7 +107,7 @@
                                     </div>
                                     <select wire:model="materi_id" type="text" name="materi" class="form-select"
                                         id="materi" placeholder="Pilih Materi" required>
-                                        <option value="">-- Pilih Materi --</option>
+                                        <option value="">-- Pilih Topik Materi --</option>
                                         @if ($materi_list)
                                             @foreach ($materi_list as $mtl)
                                                 <option value="{{ $mtl->id }}">{{ $mtl->materi }}</option>

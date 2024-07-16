@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Jurusan;
 use App\Models\MataPelajaran;
 use App\Models\Materi as ModelsMateri;
 use App\Models\User;
@@ -14,7 +15,7 @@ class Materi extends Component
 {
     use WithPagination, LivewireAlert;
 
-    public $materi_id, $mapel_id, $mapel_list, $guru, $guru_list, $nama_guru, $materi, $ki_kd, $link_materi, $delete_id, $user;
+    public $materi_id, $mapel_id, $mapel_list, $guru, $guru_list, $nama_guru, $materi, $ki_kd, $link_materi, $delete_id, $user, $jurusan_id, $jurusan_list;
     protected $listeners = ['refresh' => '$refresh'];
     protected $paginationTheme = 'bootstrap';
 
@@ -27,13 +28,18 @@ class Materi extends Component
                     $q->where('name', 'user')->orWhere('name', 'admin');
                 }
             )->get();
-        $this->mapel_list = MataPelajaran::all();
+        $this->jurusan_list = Jurusan::all();
         /** @var \App\Models\User */
         $user = Auth::user();
         if ($user->hasRole(['user'])) {
             $this->nama_guru = $user->name;
         }
         $this->user = $user;
+    }
+    public function updatedJurusanId($id)
+    {
+        $this->mapel_id = '';
+        $this->mapel_list = MataPelajaran::where('jurusan_id', $id)->get();
     }
     public function render()
     {
@@ -86,7 +92,7 @@ class Materi extends Component
 
     public function resetInputFields()
     {
-        $this->reset(['materi_id', 'mapel_id', 'guru', 'materi', 'ki_kd', 'link_materi', 'delete_id']);
+        $this->reset(['materi_id', 'mapel_id', 'guru', 'materi', 'ki_kd', 'link_materi', 'delete_id', 'jurusan_id']);
     }
 
     public function deleteId($id)

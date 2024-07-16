@@ -70,7 +70,7 @@ class JurnalTable extends DataTableComponent
                     ->sortable()->searchable(),
                 Column::make("Mata Pelajaran", "mata_pelajaran.nama_mapel")
                     ->sortable()->searchable(),
-                Column::make("Materi", "materi.materi")
+                Column::make("Topik Materi", "materi.materi")
                     ->sortable()->searchable(),
                 Column::make('Status')
                     ->label(

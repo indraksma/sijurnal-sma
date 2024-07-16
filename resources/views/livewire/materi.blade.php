@@ -36,8 +36,11 @@
                             <table class="table table-bordered table-striped mb-0">
                                 <thead>
                                     <tr>
-                                        <th>Guru</th>
+                                        @if ($user->hasRole(['admin', 'superadmin']))
+                                            <th>Guru</th>
+                                        @endif
                                         <th>Mapel</th>
+                                        <th>Paket</th>
                                         <th>Topik</th>
                                         <th>Materi</th>
                                         <th>Link Materi</th>
@@ -48,8 +51,15 @@
                                     @if ($data_materi->isNotEmpty())
                                         @foreach ($data_materi as $data)
                                             <tr>
-                                                <td>{{ $data->user->name }}</td>
+                                                @if ($user->hasRole(['admin', 'superadmin']))
+                                                    <td>{{ $data->user->name }}</td>
+                                                @endif
                                                 <td>{{ $data->mata_pelajaran->nama_mapel }}</td>
+                                                @if ($data->mata_pelajaran->jurusan_id != 0)
+                                                    <td>{{ $data->mata_pelajaran->jurusan->kode_jurusan }}</td>
+                                                @else
+                                                    <td>Umum / NA</td>
+                                                @endif
                                                 <td>{{ $data->materi }}</td>
                                                 <td>{{ $data->ki_kd }}</td>
                                                 <td>
@@ -63,11 +73,11 @@
                                                 <td>
                                                     <a wire:click="edit({{ $data->id }})" data-bs-toggle="modal"
                                                         data-bs-target="#createModal"
-                                                        class="btn btn-sm btn-warning me-2 mb-2 mb-xl-0">
+                                                        class="btn btn-sm btn-warning me-2 mb-1">
                                                         <i class="fas fa-edit"></i>&nbsp;Edit
                                                     </a>
                                                     @if (!$data->jurnal)
-                                                        <a class="btn btn-sm btn-danger me-2"
+                                                        <a class="btn btn-sm btn-danger me-2 mb-1"
                                                             wire:click="deleteId({{ $data->id }})"
                                                             data-bs-toggle="modal" data-bs-target="#deleteModal">
                                                             <i class="fas fa-trash"></i>&nbsp;Delete
@@ -78,7 +88,11 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="6" class="text-center">Belum ada data</td>
+                                            @if ($user->hasRole(['admin', 'superadmin']))
+                                                <td colspan="6" class="text-center">Belum ada data</td>
+                                            @else
+                                                <td colspan="5" class="text-center">Belum ada data</td>
+                                            @endif
                                         </tr>
                                     @endif
                                 </tbody>
@@ -107,7 +121,7 @@
                         <label for="guru" class="form-label">Nama Guru</label>
                         @if (Auth::user()->hasRole(['admin', 'superadmin']))
                             <select wire:model="guru" class="form-select" id="guru" required>
-                                <option value="">-- Select --</option>
+                                <option value="">-- Pilih --</option>
                                 @foreach ($guru_list as $data)
                                     <option value="{{ $data->id }}">{{ Str::upper($data->name) }}</option>
                                 @endforeach
@@ -117,12 +131,27 @@
                         @endif
                     </div>
                     <div class="mb-3">
+                        <label for="jurusan" class="form-label">Kode Paket</label>
+                        <select wire:model="jurusan_id" type="text" name="jurusan" class="form-select" id="jurusan"
+                            placeholder="Pilih Paket" required>
+                            <option value="">-- Pilih --</option>
+                            <option value="0">Umum / NA</option>
+                            @if ($jurusan_list->isNotEmpty())
+                                @foreach ($jurusan_list as $jrs)
+                                    <option value="{{ $jrs->id }}">{{ $jrs->kode_jurusan }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="mapel" class="form-label">Mata Pelajaran</label>
                         <select wire:model="mapel_id" class="form-select" id="mapel" required>
-                            <option value="">-- Select --</option>
-                            @foreach ($mapel_list as $datam)
-                                <option value="{{ $datam->id }}">{{ Str::upper($datam->nama_mapel) }}</option>
-                            @endforeach
+                            <option value="">-- Pilih --</option>
+                            @if ($mapel_list)
+                                @foreach ($mapel_list as $datam)
+                                    <option value="{{ $datam->id }}">{{ Str::upper($datam->nama_mapel) }}</option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                     <div class="mb-3">
