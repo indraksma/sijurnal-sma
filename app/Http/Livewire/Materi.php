@@ -39,7 +39,7 @@ class Materi extends Component
     public function updatedJurusanId($id)
     {
         $this->mapel_id = '';
-        $this->mapel_list = MataPelajaran::where('jurusan_id', $id)->get();
+        $this->mapel_list = MataPelajaran::where('jurusan_id', $id)->orWhere('jurusan_id', 0)->get();
     }
     public function render()
     {
