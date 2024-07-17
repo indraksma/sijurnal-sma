@@ -16,8 +16,60 @@
                     <h5 class="card-title mb-0">Data Siswa</h5>
                 </div>
                 <div class="card-body rounded-bottom">
+                    <div class="form-group">
+                        <input type="text" class="form-control mb-3" placeholder="Search" wire:model="searchTerm" />
+                    </div>
                     <div class="table-responsive">
-                        <livewire:siswa-table />
+                        <table class="table table-bordered table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Kelas</th>
+                                    <th>NIS</th>
+                                    <th>JK</th>
+                                    @if (Auth::user()->hasRole(['admin', 'superadmin']))
+                                        <th>Action</th>
+                                    @endif
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ($data_siswa->isNotEmpty())
+                                    @foreach ($data_siswa as $data)
+                                        <tr>
+                                            <td>{{ $data->nama }}</td>
+                                            <td>{{ $data->kelas->nama_kelas }}
+                                            </td>
+                                            <td>{{ $data->nis }}</td>
+                                            <td>{{ $data->jk }}</td>
+                                            @if (Auth::user()->hasRole(['admin', 'superadmin']))
+                                                <td>
+                                                    <a href="#siswaCard" wire:click="edit({{ $data->id }})"
+                                                        class="btn btn-sm btn-warning me-2 mb-2 mb-xl-0">
+                                                        <i class="fas fa-edit"></i>&nbsp;Edit
+                                                    </a>
+                                                    <a class="btn btn-sm btn-danger me-2"
+                                                        wire:click="deleteId({{ $data->id }})"
+                                                        data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                                        <i class="fas fa-trash"></i>&nbsp;Delete
+                                                    </a>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        @if (Auth::user()->hasRole(['admin', 'superadmin']))
+                                            <td colspan="5" class="text-center">Belum ada data</td>
+                                        @else
+                                            <td colspan="4" class="text-center">Belum ada data</td>
+                                        @endif
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-2">
+                        {{ $data_siswa->links() }}
                     </div>
                 </div>
             </div>
@@ -109,7 +161,8 @@
                                 </div>
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-auto mb-1">
-                                        <button type="button" class="btn btn-info" wire:click="import">Import</button>
+                                        <button type="button" class="btn btn-info"
+                                            wire:click="import">Import</button>
                                     </div>
                                     <div class="col-auto mb-1">
                                         <a href="{{ asset('format_import_siswa.xlsx') }}"><button type="button"

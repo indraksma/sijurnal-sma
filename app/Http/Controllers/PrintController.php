@@ -19,11 +19,13 @@ class PrintController extends Controller
 {
     public function kbm(Request $request)
     {
+        $semester_id = $request->semester_id;
+        $semester = Semester::where('id', $semester_id)->first();
         $kop = SiteConfig::where('option_name', 'kop_surat')->first()->option_value;
         $school_name = SiteConfig::where('option_name', 'school_name')->first()->option_value;
         $jurnal = Jurnal::where('user_id', $request->user_id)->where('kelas_id', $request->kelas_id)->where('mata_pelajaran_id', $request->mapel_id)->where('semester_id', $request->semester_id)->get();
         if ($jurnal->isNotEmpty()) {
-            $pdf = Pdf::loadView('print.laporanpembelajaran', ['jurnal' => $jurnal, 'school_name' => $school_name, 'kop' => $kop]);
+            $pdf = Pdf::loadView('print.laporanpembelajaran', ['jurnal' => $jurnal, 'school_name' => $school_name, 'kop' => $kop, 'semester' => $semester]);
             $filename = "Laporan-Pembelajaran-" . $jurnal[0]->mata_pelajaran->nama_mapel . "-" . $jurnal[0]->kelas->nama_kelas . ".pdf";
             return $pdf->stream($filename);
         } else {
