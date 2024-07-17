@@ -20,7 +20,7 @@ class Siswa extends Component
     public $kelas_id, $siswa_id, $kelas_list, $nama, $nis, $jk, $delete_id, $template_excel, $kelas, $jurusan_list, $jurusan_id, $nama_kelas_list, $searchTerm;
     public $iteration = 0;
     protected $paginationTheme = 'bootstrap';
-    protected $listeners = ['refresh' => '$refresh'];
+    protected $listeners = ['refresh' => '$refresh', 'edit' => 'edit', 'deleteId' => 'deleteId'];
 
     public function mount()
     {
