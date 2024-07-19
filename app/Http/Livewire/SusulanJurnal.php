@@ -34,7 +34,7 @@ class SusulanJurnal extends Component
             $q->where('name', 'user')->orWhere('name', 'admin');
         })->get();
         $this->jurusan_list = Jurusan::all();
-        $this->mapel_list = MataPelajaran::all();
+        // $this->mapel_list = MataPelajaran::all();
         $this->tanggal = date('Y-m-d');
         $this->semester_id = Semester::where('is_active', '1')->first()->id;
     }
@@ -48,24 +48,17 @@ class SusulanJurnal extends Component
     public function updatedKelas()
     {
         $this->kelas_id = '';
-        if ($this->jurusan_id != NULL) {
-            $this->nama_kelas_list = Kelas::where('kelas', $this->kelas)->where('jurusan_id', $this->jurusan_id)->get();
-        }
-        $this->cekForm();
-    }
-
-    public function updatedJurusanId()
-    {
-        $this->kelas_id = '';
-        if ($this->kelas != NULL) {
-            $this->nama_kelas_list = Kelas::where('kelas', $this->kelas)->where('jurusan_id', $this->jurusan_id)->get();
-        }
+        $this->nama_kelas_list = Kelas::where('kelas', $this->kelas)->get();
         $this->cekForm();
     }
 
     public function updatedKelasId($id)
     {
+        $this->mapel_id = '';
         $this->siswa_list = Siswa::where('kelas_id', $id)->get();
+        $kelas = Kelas::where('id', $id)->first();
+        $jurusan_id = $kelas->jurusan_id;
+        $this->mapel_list = MataPelajaran::where('jurusan_id', $jurusan_id)->orWhere('jurusan_id', 0)->get();
         $siswa = $this->siswa_list;
         if ($siswa->isNotEmpty()) {
             foreach ($siswa as $key => $data) {
@@ -102,9 +95,9 @@ class SusulanJurnal extends Component
         if ($this->kelas == "") {
             $this->cekform = false;
         }
-        if ($this->jurusan_id == "") {
-            $this->cekform = false;
-        }
+        // if ($this->jurusan_id == "") {
+        //     $this->cekform = false;
+        // }
         if ($this->kelas_id == "") {
             $this->cekform = false;
         }

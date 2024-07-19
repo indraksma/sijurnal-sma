@@ -41,6 +41,11 @@
                                     id="nis" placeholder="NIS" required>
                             </div>
                             <div class="mb-3">
+                                <label for="nisn" class="form-label">NISN</label>
+                                <input wire:model.lazy="nisn" type="text" name="nisn" class="form-control"
+                                    id="nisn" placeholder="NISN" required>
+                            </div>
+                            <div class="mb-3">
                                 <label for="kelas" class="form-label">Kelas</label>
                                 <select wire:model="kelas" type="text" name="kelas" class="form-select"
                                     id="kelas" placeholder="Pilih Kelas" required>
@@ -109,7 +114,8 @@
                                 </div>
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-auto mb-1">
-                                        <button type="button" class="btn btn-info" wire:click="import">Import</button>
+                                        <button type="button" class="btn btn-info"
+                                            wire:click="import">Import</button>
                                     </div>
                                     <div class="col-auto mb-1">
                                         <a href="{{ asset('format_import_siswa.xlsx') }}"><button type="button"

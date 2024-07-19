@@ -16,11 +16,12 @@ class SiswaImport implements ToModel, WithStartRow
 
     public function model(array $row)
     {
-        $kelas_id = Kelas::where('nama_kelas', 'LIKE', $row[3])->first();
+        $kelas_id = Kelas::where('nama_kelas', 'LIKE', $row[4])->first();
         return new Siswa([
             'nama' => $row[0],
             'nis' => $row[1],
-            'jk' => $row[2],
+            'nisn' => $row[2],
+            'jk' => $row[3],
             'kelas_id' => $kelas_id->id,
         ]);
     }

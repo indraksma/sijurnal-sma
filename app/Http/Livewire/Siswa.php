@@ -17,7 +17,7 @@ class Siswa extends Component
 {
     use LivewireAlert, WithPagination, WithFileUploads;
 
-    public $kelas_id, $siswa_id, $kelas_list, $nama, $nis, $jk, $delete_id, $template_excel, $kelas, $jurusan_list, $jurusan_id, $nama_kelas_list, $searchTerm;
+    public $kelas_id, $siswa_id, $kelas_list, $nama, $nis, $nisn, $jk, $delete_id, $template_excel, $kelas, $jurusan_list, $jurusan_id, $nama_kelas_list, $searchTerm;
     public $iteration = 0;
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['refresh' => '$refresh', 'edit' => 'edit', 'deleteId' => 'deleteId'];
@@ -30,10 +30,11 @@ class Siswa extends Component
     public function render()
     {
         $this->kelas_list = Kelas::select('kelas')->distinct()->get();
-        $siswa = ModelsSiswa::select('siswas.nama', 'siswas.id', 'siswas.kelas_id', 'kelas.nama_kelas', 'siswas.nis', 'siswas.jk')->join('kelas', 'siswas.kelas_id', '=', 'kelas.id')->where(
+        $siswa = ModelsSiswa::select('siswas.nama', 'siswas.id', 'siswas.kelas_id', 'kelas.nama_kelas', 'siswas.nis', 'siswas.nisn', 'siswas.jk')->join('kelas', 'siswas.kelas_id', '=', 'kelas.id')->where(
             function ($sub_query) {
                 $sub_query->where('siswas.nama', 'like', '%' . $this->searchTerm . '%')
                     ->orWhere('siswas.nis', 'like', '%' . $this->searchTerm . '%')
+                    ->orWhere('siswas.nisn', 'like', '%' . $this->searchTerm . '%')
                     ->orWhere('kelas.nama_kelas', 'like', '%' . $this->searchTerm . '%');
             }
         )->orderBy('siswas.nama', 'ASC')->paginate(10);
@@ -66,6 +67,7 @@ class Siswa extends Component
             'nama'      => $this->nama,
             'kelas_id'   => $this->kelas_id,
             'nis'   => $this->nis,
+            'nisn'   => $this->nisn,
             'jk'   => $this->jk,
         ]);
 
@@ -84,6 +86,7 @@ class Siswa extends Component
         $this->siswa_id = $data->id;
         $this->kelas_id = $data->kelas_id;
         $this->nis = $data->nis;
+        $this->nisn = $data->nisn;
         $this->nama = $data->nama;
         $this->jk = $data->jk;
         $kelas = Kelas::where('id', $this->kelas_id)->first();
@@ -94,7 +97,7 @@ class Siswa extends Component
 
     public function resetInputFields()
     {
-        $this->reset(['kelas_id', 'nama', 'nis', 'jk', 'siswa_id', 'delete_id', 'template_excel', 'kelas', 'jurusan_id', 'nama_kelas_list']);
+        $this->reset(['kelas_id', 'nama', 'nis', 'nisn', 'jk', 'siswa_id', 'delete_id', 'template_excel', 'kelas', 'jurusan_id', 'nama_kelas_list']);
     }
 
     public function deleteId($id)
