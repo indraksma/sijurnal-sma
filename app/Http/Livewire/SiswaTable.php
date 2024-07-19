@@ -32,6 +32,9 @@ class SiswaTable extends DataTableComponent
                 Column::make("NIS", "nis")
                     ->searchable()
                     ->sortable(),
+                Column::make("NISN", "nisn")
+                    ->searchable()
+                    ->sortable(),
                 Column::make("JK", "jk")
                     ->searchable()
                     ->sortable(),
