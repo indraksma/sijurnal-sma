@@ -61,7 +61,9 @@
                                     <tr>
                                         <th width="50px">Pilih</th>
                                         <th>Nama Siswa</th>
+                                        <th>JK</th>
                                         <th>NIS</th>
+                                        <th>NISN</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -71,12 +73,14 @@
                                                 <td><input type="checkbox" class="form-check-input"
                                                         wire:model="selected" value="{{ $dtsiswa->id }}" /></td>
                                                 <td>{{ $dtsiswa->nama }}</td>
+                                                <td>{{ $dtsiswa->jk }}</td>
                                                 <td>{{ $dtsiswa->nis }}</td>
+                                                <td>{{ $dtsiswa->nisn }}</td>
                                             </tr>
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="3" class="text-center">Belum ada Data Siswa</td>
+                                            <td colspan="5" class="text-center">Belum ada Data Siswa</td>
                                         </tr>
                                     @endif
                                 </tbody>
