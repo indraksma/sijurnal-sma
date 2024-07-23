@@ -136,6 +136,7 @@
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
+                                                        <th>No</th>
                                                         <th>Nama</th>
                                                         <th width="20%">Kehadiran</th>
                                                     </tr>
@@ -144,6 +145,7 @@
                                                     @if ($siswa_list->isNotEmpty())
                                                         @foreach ($siswa_list as $key => $data_siswa)
                                                             <tr>
+                                                                <td>{{ $key + 1 }}</td>
                                                                 <td>{{ $data_siswa->nama }}</td>
                                                                 <td>
                                                                     <select wire:model="kehadiran.{{ $key }}"
