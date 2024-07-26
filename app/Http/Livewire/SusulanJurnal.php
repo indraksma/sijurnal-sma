@@ -55,7 +55,7 @@ class SusulanJurnal extends Component
     public function updatedKelasId($id)
     {
         $this->mapel_id = '';
-        $this->siswa_list = Siswa::where('kelas_id', $id)->get();
+        $this->siswa_list = Siswa::where('kelas_id', $id)->orderBy('nama', 'ASC')->get();
         $kelas = Kelas::where('id', $id)->first();
         $jurusan_id = $kelas->jurusan_id;
         $this->mapel_list = MataPelajaran::where('jurusan_id', $jurusan_id)->orWhere('jurusan_id', 0)->get();
