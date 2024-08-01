@@ -174,7 +174,8 @@
             <footer class="footer-admin mt-auto footer-light">
                 <div class="container-xl px-4">
                     <div class="row">
-                        <div class="col-12 small text-center">Copyright &copy; IndraKsma 2024</div>
+                        <div class="col-12 small text-center">Copyright &copy; <a
+                                href="https://srayavisitama.com">Sraya Visitama</a> 2024</div>
                     </div>
                 </div>
             </footer>
